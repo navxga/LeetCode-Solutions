@@ -17,14 +17,25 @@
 
             int result = 0;
 
-            foreach (var letter in s.ToCharArray())
+            char lastLetter = new char { };
+
+            //MCMXCIV
+
+            foreach (char letter in s.ToCharArray())
             {
                 if (romanNumbers.ContainsKey(letter))
                 {
-                    var value = romanNumbers[letter];
+                    int value;
+
+                    if (romanNumbers[letter] < romanNumbers[lastLetter])
+                        value = romanNumbers[letter] - romanNumbers[lastLetter];
+                    else
+                        value = romanNumbers[letter];
 
                     result += value;
                 }
+
+                lastLetter = letter;
             }
 
             return result;
