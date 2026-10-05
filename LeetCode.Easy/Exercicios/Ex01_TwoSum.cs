@@ -34,9 +34,22 @@ public class Ex01_TwoSum
         Assert.Equal(esperado, resultado.Order().ToArray()); // a ordem não importa
     }
 
-    // TODO: implemente sua solução aqui
     public int[] TwoSum(int[] nums, int target)
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            for (int j = 0; j < nums.Length; j++)
+            {
+                if (i == j)
+                    continue;
+
+                bool isEqual = nums[i] + nums[j] == target;
+
+                if (isEqual)
+                    return [ i, j ];
+            }
+        }
+
+        return [];
     }
 }
