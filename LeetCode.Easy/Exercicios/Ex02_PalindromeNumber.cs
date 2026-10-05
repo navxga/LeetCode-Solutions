@@ -36,9 +36,18 @@ public class Ex02_PalindromeNumber
         Assert.Equal(esperado, resultado);
     }
 
-    // TODO: implemente sua solução aqui
     public bool IsPalindrome(int x)
     {
-        throw new NotImplementedException();
+        char[] nums = x.ToString().ToCharArray();
+
+        for (int i = 0; i < nums.Length / 2; i++)
+        {
+            int j = nums.Length - (i + 1);
+
+            if (nums[i] != nums[j])
+                return false;
+        }
+
+        return true;
     }
 }
