@@ -1,5 +1,3 @@
-using LeetCode.Easy.Common;
-
 namespace LeetCode.Easy.Exercicios;
 
 public class Ex06_MergeTwoSortedLists
@@ -41,9 +39,13 @@ public class Ex06_MergeTwoSortedLists
         Assert.Equal(esperado, ListNode.ToArray(resultado));
     }
 
-    // TODO: implemente sua solução aqui
     public ListNode? MergeTwoLists(ListNode? list1, ListNode? list2)
     {
-        throw new NotImplementedException();
+        int[] array1 = ListNode.ToArray(list1);
+        int[] array2 = ListNode.ToArray(list2);
+
+        int[] finalArray = array1.Concat(array2).Order().ToArray();
+
+        return ListNode.FromArray(finalArray);
     }
 }
