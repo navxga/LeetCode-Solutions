@@ -40,9 +40,42 @@ public class Ex05_ValidParentheses
         Assert.Equal(esperado, resultado);
     }
 
-    // TODO: implemente sua solução aqui
+    //NÃO VALE, A SOLUÇÃO ABAIXO EU FIZ COM IA
     public bool IsValid(string s)
     {
-        throw new NotImplementedException();
+        var closingByOpening = new Dictionary<char, char>
+        {
+            { '(', ')' },
+            { '[', ']' },
+            { '{', '}' }
+        };
+
+        var expectedClosings = new List<char>();
+
+        foreach (char symbol in s)
+        {
+            bool isOpening = closingByOpening.ContainsKey(symbol);
+
+            if (isOpening)
+            {
+                expectedClosings.Add(closingByOpening[symbol]);
+                continue;
+            }
+
+            bool hasNothingToClose = expectedClosings.Count == 0;
+            if (hasNothingToClose)
+                return false;
+
+            int lastIndex = expectedClosings.Count - 1;
+            char expectedClosing = expectedClosings[lastIndex];
+
+            if (symbol != expectedClosing)
+                return false;
+
+            expectedClosings.RemoveAt(lastIndex);
+        }
+
+        bool everythingWasClosed = expectedClosings.Count == 0;
+        return everythingWasClosed;
     }
 }
