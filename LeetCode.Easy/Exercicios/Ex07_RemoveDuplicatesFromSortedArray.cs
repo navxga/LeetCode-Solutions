@@ -36,9 +36,30 @@ public class Ex07_RemoveDuplicatesFromSortedArray
         Assert.Equal(esperado, nums[..k]); // só os k primeiros importam
     }
 
-    // TODO: implemente sua solução aqui
     public int RemoveDuplicates(int[] nums)
     {
-        throw new NotImplementedException();
+        int? lastNum = null;
+        int[] indexesToDelete = [];
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] == lastNum)
+                indexesToDelete = indexesToDelete.Append(i).ToArray();
+
+            lastNum = nums[i];
+        }
+
+        int writeIndex = 0;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (!indexesToDelete.Contains(i))
+            {
+                nums[writeIndex] = nums[i];
+                writeIndex++;
+            }
+        }
+
+        return writeIndex;
     }
 }
